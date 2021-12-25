@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;500;700&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/**************************************/
+/* Variables */
+
+:root {
+    --clr-very-dark-magenta: hsl(300, 43%, 22%);
+    --clr-soft-pink: hsl(333, 80%, 67%);
+    --clr-dark-magenta: hsl(303, 10%, 53%);
+    --clr-light-magenta: hsl(300, 24%, 96%);
+    --clr-white: hsl(0, 0%, 100%);
+
+    --font-spartan: 'Spartan', sans-serif;
+}
+
+/**************************************/
+/* General Styles */
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: var(--font-spartan);
+    font-size: 15px;
+    background: url("../images/bg-pattern-top-mobile.svg") top left no-repeat, url("../images/bg-pattern-bottom-mobile.svg") bottom right no-repeat;
+}
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas: "intro" "rates" "testimonials";
+    gap: 3rem;
+    padding: 5rem 1.2rem;
+}
+
+/**************************************/
+/* Intro */
+
+.intro {
+    max-width: 450px;
+    height: fit-content;
+    justify-self: center;
+    grid-area: intro;
+}
+
+.title {
+    color: var(--clr-very-dark-magenta);
+    font-weight: 700;
+}
+
+.intro > .title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1em;
+    text-align: center;
+}
+
+.description {
+    color: var(--clr-dark-magenta);
+    padding-block-start: 1rem;
+    text-align: center;
+}
+
+/**************************************/
+/* Rates */
+
+.rates {
+    width: 100%;
+    max-width: 600px;
+    height: fit-content;
+    display: grid;
+    gap: 1rem;
+    grid-area: rates;
+}
+
+.rate-c {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem 2rem;
+    text-align: center;
+    background-color: var(--clr-light-magenta);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+}
+
+.stars > img {
+    display: inline-block;
+    margin-inline: 0.15rem;
+}
+
+.rate-c:nth-child(1) {justify-self: flex-start;}
+
+.rate-c:nth-child(2) {justify-self: center;}
+
+.rate-c:nth-child(3) {justify-self: flex-end;}
+
+/**************************************/
+/* Testimonials */
+
+.testimonials {
+    width: 100%;
+    display: grid;
+    grid-template-areas: "card-01" "card-02" "card-03";
+    gap: 2rem;
+    grid-area: testimonials;
+}
+
+.testimonial-c {
+    max-width: 400px;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 50px;
+    grid-template-areas: "image info" "review review";
+    align-items: center;
+    gap: 2rem 1.8rem;
+    padding: 2rem;
+    background-color: var(--clr-very-dark-magenta);
+    border-radius: 10px;
+    color: var(--clr-white);
+}
+
+.card-01 {
+    justify-self: flex-start;
+    grid-area: card-01;
+}
+
+.card-02 {
+    justify-self: center;
+    grid-area: card-02;
+}
+
+.card-03 {
+    justify-self: flex-end;
+    grid-area: card-03;
+}
+
+.image {
+    width: 50px;
+    display: block;
+    border-radius: 50%;
+    grid-area: image;
+}
+
+.review {grid-area: review;}
+
+.info {
+    font-weight: 500;
+    grid-area: info;
+}
+
+.info > p {
+    font-weight: 400;
+    color: var(--clr-soft-pink);
+    margin-top: 0.3rem;
+}
+
+/**************************************/
+/* Media Query */
+
+@media (min-width: 640px) {
+    body {
+        background-image: url("../images/bg-pattern-top-desktop.svg"), url("../images/bg-pattern-bottom-desktop.svg");
+    }
+
+    .rates {justify-self: center;}
+
+    .testimonials {
+        grid-template-areas: "card-01 card-01 card-02 card-02" ". card-03 card-03 .";
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1000px) {
+    main {
+        max-width: max-content;
+        grid-template-rows: max-content minmax(200px, 280px);
+        grid-template-areas: "intro rates" "testimonials testimonials";
+        margin: auto;
+    }
+
+    .intro,
+    .rates {
+        justify-self: flex-start;
+    }
+
+    .intro > .title,
+    .description {
+        text-align: start;
+    }
+
+    .rate-c {width: 80%;}
+
+    .testimonials {grid-template-areas: "card-01 card-02 card-03";}
+
+    .card-02 {align-self: center;}
+
+    .card-03 {align-self: flex-end;}
+}
+
+/**************************************/
+/* Attribution */
+
+.attribution {
+    padding: 1.2rem;
+    text-align: center;
+    color: var(--clr-dark-magenta);
+}
+
+.attribution > a {
+    text-decoration: none;
+    color: var(--clr-very-dark-magenta);
+}
+
+.attribution > a:hover,
+.attribution > a:focus {
+    text-decoration: underline;
+}
+
+/*********************************/
+/* Accessibility */
+
+.sr-only {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important
+}
